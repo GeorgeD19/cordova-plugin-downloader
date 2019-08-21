@@ -72,6 +72,7 @@ public class Downloader extends CordovaPlugin {
             String title = arg_object.getString("title");
             String folder = arg_object.getString("folder");
             String description = arg_object.getString("description");
+            String authorization = arg_object.getString("authorization");
 			
 
 			File direct = new File(Environment.getExternalStorageDirectory()+ "/"+folder);
@@ -97,6 +98,8 @@ public class Downloader extends CordovaPlugin {
             request.setTitle(title);
             // Set a description of this download, to be displayed in notifications (if enabled)
             request.setDescription(description);
+            // Set bearer auth header
+            request.addRequestHeader("Authorization", authorization);
             // This download doesn't show in the UI or in the notifications. 
 			if(!visible){
 			request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);

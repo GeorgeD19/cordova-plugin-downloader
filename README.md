@@ -49,7 +49,8 @@ var options = {
     path: "My Pdf.pdf", // The File Name with extension
     description: 'The pdf file is downloading', // Download description Notification String
     visible: true, // This download is visible and shows in the notifications while in progress and after completion.
-    folder: "documents" // Folder to save the downloaded file, if not exist it will be created
+    folder: "documents", // Folder to save the downloaded file, if not exist it will be created
+    authorization: "" // The authorization header
 }
 
 Downloader.download(options, downloadSuccessCallback, downloadErrorCallback);

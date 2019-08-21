@@ -10,6 +10,7 @@ import Foundation
 
         let args = command.arguments[0] as! NSDictionary
         let url = URL(string: args["url"] as! String)
+        let authorization = args["authorization"] as! String
         let targetFile = args["path"] as! String
 
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
@@ -39,6 +40,7 @@ import Foundation
             let session = URLSession(configuration: sessionConfig, delegate: nil, delegateQueue: nil)
             var request = URLRequest(url: url!)
             request.httpMethod = "GET"
+            request.addValue(authorization, forHTTPHeaderField: "Authorization")
             let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 if (error == nil) {
                     if let response = response as? HTTPURLResponse {
